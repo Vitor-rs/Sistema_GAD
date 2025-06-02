@@ -1,15 +1,42 @@
+# ========================================
+# DOCKER COMPOSE - SISTEMA GAD
+# Serviços para desenvolvimento local
+# ========================================
+
 services:
-  ollama:
-    image: 'ollama/ollama:latest'
-    ports:
-      - '11434'
+  # ========================================
+  # BANCO DE DADOS POSTGRESQL COM PGVECTOR
+  # ========================================
   pgvector:
     image: 'pgvector/pgvector:pg16'
+    container_name: gad-postgres
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=gad_dev'
+      - 'POSTGRES_USER=gad_user'
+      - 'POSTGRES_PASSWORD=gad_password'
     labels:
       - "org.springframework.boot.service-connection=postgres"
     ports:
-      - '5432'
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # ========================================
+  # OLLAMA - MODELOS DE IA LOCAL
+  # ========================================
+  ollama:
+    image: 'ollama/ollama:latest'
+    container_name: gad-ollama
+    ports:
+      - '11434:11434'
+    volumes:
+      - ollama_data:/root/.ollama
+
+# ========================================
+# VOLUMES PERSISTENTES
+# ========================================
+volumes:
+  postgres_data:
+    name: gad-postgres-data
+  ollama_data:
+    name: gad-ollama-data

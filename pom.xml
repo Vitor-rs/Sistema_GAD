@@ -1,121 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--
+	Sistema GAD (Gestão Acadêmica Digital)
+	
+	Este arquivo POM.xml define as dependências, plugins e configurações do Maven
+	para o projeto Sistema GAD, um sistema de gestão acadêmica desenvolvido com
+	Spring Boot e tecnologias relacionadas.
+	
+	Autor: IFMS
+	Versão: 0.0.1-SNAPSHOT
+	Data: 2025
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- CONFIGURAÇÃO PARENT: Herda configurações do Spring Boot Starter Parent -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.0</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
+	
+	<!-- IDENTIFICAÇÃO DO PROJETO -->
 	<groupId>com.ifms</groupId>
 	<artifactId>gad</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gad</name>
-	<description>Demo project for Spring Boot</description>
-	<url/>
+	<description>Projeto Sistema GAD - Sistema de Gestão Acadêmica Digital do IFMS</description>
+	
+	<!-- METADADOS OPCIONAIS (podem ser preenchidos futuramente) -->
+	<url />
 	<licenses>
-		<license/>
+		<license />
 	</licenses>
 	<developers>
-		<developer/>
+		<developer />
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection />
+		<developerConnection />
+		<tag />
+		<url />
 	</scm>
+	
+	<!-- PROPRIEDADES DE CONFIGURAÇÃO: Centraliza versões e configurações -->
 	<properties>
-		<java.version>23</java.version>
+		<!-- Versão do Java utilizada no projeto -->
+		<java.version>21</java.version>
+		<!-- Versão do Spring AI para funcionalidades de inteligência artificial -->
 		<spring-ai.version>1.0.0</spring-ai.version>
+		<!-- Versão do MapStruct para mapeamento entre objetos -->
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
+		<!-- Versão do Lombok para redução de código boilerplate -->
+		<lombok.version>1.18.36</lombok.version>
 	</properties>
+	
+	<!-- DEPENDÊNCIAS DO PROJETO -->
 	<dependencies>
+		<!-- MAPEAMENTO DE OBJETOS -->
+		<!-- MapStruct: Framework para mapeamento automático entre DTOs e entidades -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
+		
+		<!-- SPRING BOOT STARTERS -->
+		<!-- JPA/Hibernate: Para persistência de dados e ORM -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		<!-- Thymeleaf: Template engine para renderização de páginas web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		
+		<!-- Validation: Para validação de dados com Bean Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		
+		<!-- Web: Para desenvolvimento de aplicações web MVC -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		<!-- Actuator: Para monitoramento e métricas da aplicação -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+		<!-- SPRING AI - INTELIGÊNCIA ARTIFICIAL -->
+		<!-- Armazenamento vetorial para funcionalidades de IA -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-advisors-vector-store</artifactId>
 		</dependency>
+		
+		<!-- Leitor de documentos PDF para processamento com IA -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-pdf-document-reader</artifactId>
 		</dependency>
+		
+		<!-- Integração com Ollama para modelos de IA locais -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-starter-model-ollama</artifactId>
 		</dependency>
+		
+		<!-- Integração com PGVector para armazenamento vetorial no PostgreSQL -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
 		</dependency>
 
+		<!-- DEPENDÊNCIAS DE RUNTIME -->
+		<!-- DevTools: Ferramentas de desenvolvimento para hot reload -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- Docker Compose: Integração automática com Docker Compose -->
+		<!-- Comentado temporariamente para permitir execução sem Docker
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-docker-compose</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		-->
+		
+		<!-- BANCOS DE DADOS -->
+		<!-- H2: Banco de dados em memória para desenvolvimento e testes -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- PostgreSQL: Driver para banco de dados PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- Spring AI Docker Compose: Integração do Spring AI com Docker Compose -->
+		<!-- Comentado temporariamente para permitir execução sem Docker
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-spring-boot-docker-compose</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		-->
+		
+		<!-- FERRAMENTAS DE DESENVOLVIMENTO -->
+		<!-- Lombok: Reduz código boilerplate com anotações -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- DEPENDÊNCIAS DE TESTE -->
+		<!-- Spring Boot Test: Ferramentas para testes integrados -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Spring REST Docs: Geração automática de documentação para APIs REST -->
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<!-- GERENCIAMENTO DE DEPENDÊNCIAS: Controla versões das dependências do Spring AI -->
 	<dependencyManagement>
 		<dependencies>
+			<!-- BOM (Bill of Materials) do Spring AI para controle de versões -->
 			<dependency>
 				<groupId>org.springframework.ai</groupId>
 				<artifactId>spring-ai-bom</artifactId>
@@ -126,37 +205,39 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<!-- CONFIGURAÇÃO DE BUILD: Plugins do Maven para compilação e build -->
 	<build>
 		<plugins>
+			<!-- PLUGIN DE COMPILAÇÃO -->
+			<!-- Maven Compiler Plugin: Compilação do código Java com processamento de anotações -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.11.0</version>
 				<configuration>
-					<source>1.8</source> <!-- depending on your project -->
-					<target>1.8</target> <!-- depending on your project -->
+					<!-- Configuração para Java 23 -->
+					<source>23</source>
+					<target>23</target>
+					<!-- Processadores de anotação para MapStruct e Lombok -->
 					<annotationProcessorPaths>
+						<!-- MapStruct: Processamento das anotações de mapeamento -->
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
 							<version>${org.mapstruct.version}</version>
 						</path>
-						<!-- other annotation processors -->
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
+						<!-- Lombok: Processamento das anotações de geração de código -->
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			
+			<!-- PLUGIN DE DOCUMENTAÇÃO -->
+			<!-- AsciiDoctor Plugin: Geração de documentação a partir de arquivos AsciiDoc -->
 			<plugin>
 				<groupId>org.asciidoctor</groupId>
 				<artifactId>asciidoctor-maven-plugin</artifactId>
@@ -175,6 +256,7 @@
 					</execution>
 				</executions>
 				<dependencies>
+					<!-- Integração com Spring REST Docs -->
 					<dependency>
 						<groupId>org.springframework.restdocs</groupId>
 						<artifactId>spring-restdocs-asciidoctor</artifactId>
@@ -182,10 +264,14 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			
+			<!-- PLUGIN DO SPRING BOOT -->
+			<!-- Spring Boot Maven Plugin: Empacotamento e execução da aplicação -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- Exclusões: Remove Lombok do JAR final (apenas tempo de compilação) -->
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

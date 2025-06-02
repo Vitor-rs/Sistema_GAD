@@ -31,3 +31,35 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Arquivos de Ambiente ###
+# Protege informações sensíveis de variáveis de ambiente
+.env
+.env.local
+.env.prod
+.env.production
+*.env
+
+# Mantém apenas os arquivos de exemplo
+!.env.*.example
+!.env.dev
+!.env.test
+
+### Logs ###
+logs/
+*.log
+*.log.*
+
+### Uploads ###
+uploads/
+temp/
+
+### Backup ###
+backup/
+*.bak
+*.backup
+
+### Sistema GAD específicos ###
+/var/log/gad/
+/var/uploads/gad/
+/var/backups/gad/
