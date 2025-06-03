@@ -222,9 +222,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.11.0</version>
 				<configuration>
-					<!-- Configuração para Java 23 -->
-					<source>23</source>
-					<target>23</target>
+					<!-- Configuração para Java 21 -->
+					<source>21</source>
+					<target>21</target>
 					<!-- Processadores de anotação para MapStruct e Lombok -->
 					<annotationProcessorPaths>
 						<!-- MapStruct: Processamento das anotações de mapeamento -->
