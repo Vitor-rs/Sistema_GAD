@@ -3,5 +3,6 @@
   "smart-lookup",
   "obsidian-local-rest-api",
   "obsidian-latex-suite",
-  "obsidian-plantuml"
+  "obsidian-plantuml",
+  "copilot"
 ]

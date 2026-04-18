@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "696e166357c33dc5",
+        "id": "52e18f8e80000c26",
         "type": "tabs",
         "children": [
           {
-            "id": "f8ecf28db8ad6c64",
+            "id": "4a66a51de80f3a25",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "apps/docs/README.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Nova aba"
+              "title": "README"
             }
           }
         ]
@@ -167,13 +171,33 @@
               "icon": "smart-connections",
               "title": "Connections"
             }
+          },
+          {
+            "id": "ba07d6aaf196b924",
+            "type": "leaf",
+            "state": {
+              "type": "smart-lookup-view",
+              "state": {},
+              "icon": "smart-lookup",
+              "title": "Lookup"
+            }
+          },
+          {
+            "id": "f8e81a83d23c5ada",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
+            }
           }
         ],
         "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 549.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -186,10 +210,31 @@
       "bases:Criar nova base": false,
       "smart-connections:Smart Connections: Open connections view": false,
       "smart-connections:Smart Connections: Open random connection": false,
-      "smart-connections:Smart Lookup: Open lookup view": false,
-      "smart-lookup:Smart Lookup: Open lookup view": false
+      "smart-lookup:Smart Lookup: Open lookup view": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "f8ecf28db8ad6c64",
-  "lastOpenFiles": []
+  "active": "46c3c3c3eced067b",
+  "lastOpenFiles": [
+    "README.md",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Clip Web Page.md",
+    "copilot/copilot-conversations/Olá@20260418_184821.md",
+    "copilot/copilot-conversations",
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts",
+    "copilot"
+  ]
 }
