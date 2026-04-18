@@ -68,10 +68,8 @@ apps/docs/site/
 .idea/
 *.iml
 
-
-
-
-
-
 # Ignore Smart Environment folder
 .smart-env
+
+# Obsisian
+.obsidian/plugins/copilot/data.json
