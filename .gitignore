@@ -57,6 +57,9 @@ __pycache__/
 apps/backend/.gradle/
 apps/backend/build/
 apps/backend/bin/
+apps/backend/out/
+.gradle/
+build/
 
 # MkDocs
 apps/docs/site/
@@ -64,3 +67,5 @@ apps/docs/site/
 # IDE
 .idea/
 *.iml
+
+
