@@ -6,8 +6,8 @@ automática de certificados acadêmicos via NLP.
 ## Apps
 
 - `apps/web-react` — Frontend React (painel do aluno e do professor)
-- `apps/api-spring` — Backend Spring Boot (orquestração e autenticação) — em construção
-- `apps/pipeline-python` — Serviço FastAPI de NLP (Docling + GLiNER2 + LoRA) — em construção
+- `apps/backend` — Backend Spring Boot (orquestração e autenticação) — em construção
+- `apps/pipeline` — Serviço FastAPI de NLP (Docling + GLiNER2 + LoRA) — em construção
 - `apps/docs` — Documentação técnica em MkDocs Material — em construção
 
 ## Stack

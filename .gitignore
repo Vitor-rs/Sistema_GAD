@@ -54,9 +54,9 @@ __pycache__/
 .pytest_cache/
 
 # Gradle / Java
-apps/api-spring/.gradle/
-apps/api-spring/build/
-apps/api-spring/bin/
+apps/backend/.gradle/
+apps/backend/build/
+apps/backend/bin/
 
 # MkDocs
 apps/docs/site/

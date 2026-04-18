@@ -1,0 +1,10 @@
+{
+  "name": "@gad/frontend-discente-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@gad/frontend-discente"
+    ]
+  }
+}

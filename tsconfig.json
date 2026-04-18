@@ -4,12 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/web-react-e2e"
-    },
-    {
-      "path": "./apps/web-react"
-    },
-    {
       "path": "./libs/contracts-ts"
     },
     {
@@ -17,6 +11,18 @@
     },
     {
       "path": "./libs/ui-components"
+    },
+    {
+      "path": "./apps/frontend-discente-e2e"
+    },
+    {
+      "path": "./apps/frontend-discente"
+    },
+    {
+      "path": "./apps/frontend-docente-e2e"
+    },
+    {
+      "path": "./apps/frontend-docente"
     }
   ]
 }
