@@ -24,7 +24,7 @@ export default defineConfig({
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm exec nx run @sistema-gad/web-react:preview',
+    command: 'pnpm exec nx run @gad/web-react:preview',
     url: 'http://localhost:4300',
     reuseExistingServer: true,
     cwd: workspaceRoot,

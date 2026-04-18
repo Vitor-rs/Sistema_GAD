@@ -27,7 +27,7 @@ export default defineConfig(() => ({
     },
   },
   test: {
-    name: '@sistema-gad/web-react',
+    name: '@gad/web-react',
     watch: false,
     globals: true,
     environment: 'jsdom',

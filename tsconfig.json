@@ -8,6 +8,15 @@
     },
     {
       "path": "./apps/web-react"
+    },
+    {
+      "path": "./libs/contracts-ts"
+    },
+    {
+      "path": "./libs/api-client-ts"
+    },
+    {
+      "path": "./libs/ui-components"
     }
   ]
 }

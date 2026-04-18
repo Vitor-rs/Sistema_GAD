@@ -1,10 +1,10 @@
 {
-  "name": "@sistema-gad/web-react-e2e",
+  "name": "@gad/web-react-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@sistema-gad/web-react"
+      "@gad/web-react"
     ]
   }
 }
