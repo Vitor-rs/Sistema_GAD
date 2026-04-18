@@ -164,9 +164,9 @@ importers:
 
   apps/frontend-discente-e2e: {}
 
-  apps/web-react: {}
+  apps/frontend-docente: {}
 
-  apps/web-react-e2e: {}
+  apps/frontend-docente-e2e: {}
 
   libs/api-client-ts:
     dependencies:
