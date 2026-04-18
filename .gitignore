@@ -46,3 +46,21 @@ Thumbs.db
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 test-output
+
+# Python / UV
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Gradle / Java
+apps/api-spring/.gradle/
+apps/api-spring/build/
+apps/api-spring/bin/
+
+# MkDocs
+apps/docs/site/
+
+# IDE
+.idea/
+*.iml
