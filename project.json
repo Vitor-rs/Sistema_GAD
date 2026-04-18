@@ -1,0 +1,42 @@
+{
+  "name": "infra",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "targets": {
+    "up": {
+      "command": "docker compose up -d --wait",
+      "cache": false,
+      "metadata": {
+        "description": "Sobe Postgres + Redis + GUIs e aguarda healthchecks"
+      }
+    },
+    "down": {
+      "command": "docker compose down",
+      "cache": false,
+      "metadata": {
+        "description": "Para e remove os containers (dados preservados)"
+      }
+    },
+    "reset": {
+      "command": "docker compose down -v",
+      "cache": false,
+      "metadata": {
+        "description": "Para containers e APAGA todos os dados (reset total)"
+      }
+    },
+    "logs": {
+      "command": "docker compose logs -f",
+      "cache": false,
+      "metadata": {
+        "description": "Exibe logs dos containers em tempo real"
+      }
+    },
+    "ps": {
+      "command": "docker compose ps",
+      "cache": false,
+      "metadata": {
+        "description": "Lista status dos containers"
+      }
+    }
+  }
+}

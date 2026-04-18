@@ -1,0 +1,79 @@
+# docker-compose.yml
+#
+# Infraestrutura local do GAD.
+# Sobe Postgres + Redis em containers isolados — NADA é instalado no host.
+#
+# Uso:
+#   docker compose up -d        → sobe tudo em background
+#   docker compose down         → para e remove os containers
+#   docker compose down -v      → para, remove containers E apaga os dados
+#
+# Os dados persistem entre restarts graças aos volumes nomeados abaixo.
+# Se quiser começar do zero, use "down -v".
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gad-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: gad
+      POSTGRES_USER: gad
+      POSTGRES_PASSWORD: gad
+    volumes:
+      - gad-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gad -d gad"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: gad-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - gad-redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ---- GUIs Web (acessíveis pelo browser) ----
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: gad-pgadmin
+    restart: unless-stopped
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gad.dev
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: "False"        # abre direto sem login de servidor
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - gad-pgadmin:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: gad-redisinsight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"
+    depends_on:
+      redis:
+        condition: service_healthy
+
+volumes:
+  gad-pgdata:
+  gad-redisdata:
+  gad-pgadmin:

@@ -69,3 +69,9 @@ apps/docs/site/
 *.iml
 
 
+
+
+
+
+# Ignore Smart Environment folder
+.smart-env

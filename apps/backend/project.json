@@ -1,0 +1,17 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "backend",
+  "targets": {
+    "serve": {
+      "command": "gradlew.bat bootRun",
+      "options": {
+        "cwd": "apps/backend"
+      },
+      "cache": false,
+      "dependsOn": ["infra:up"],
+      "metadata": {
+        "description": "Sobe a infra (Postgres + Redis + GUIs) e inicia o Spring Boot"
+      }
+    }
+  }
+}
