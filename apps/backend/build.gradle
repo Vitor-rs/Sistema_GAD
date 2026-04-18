@@ -14,18 +14,87 @@ java {
 	}
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+ext {
+    lombokVersion              = '1.18.36'
+    lombokMapstructBinding     = '0.2.0'
+    mapstructVersion           = '1.6.3'
+    springdocVersion           = '2.6.0'
+    testcontainersVersion      = '1.20.4'
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// ---- Starters do Spring Boot ----
+    // Cada "starter" é um pacote curado que traz o Spring e todas as libs
+    // associadas ao tema. Pense em starters como "kits de bolo": você compra
+    // o da fermentação, o da cobertura, etc. em vez de medir tudo do zero.
+    implementation 'org.springframework.boot:spring-boot-starter-web'          // REST + Tomcat embutido
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'     // ORM + Hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'   // Cliente Redis para cache
+    implementation 'org.springframework.boot:spring-boot-starter-validation'   // Bean Validation (JSR-380)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'     // Health, metrics, /actuator
+
+    // ---- Driver e migração do Postgres ----
+    runtimeOnly    'org.postgresql:postgresql'                 // Driver JDBC (só em runtime, não em compile)
+    implementation 'org.flywaydb:flyway-core'                  // Migrations SQL versionadas
+    implementation 'org.flywaydb:flyway-database-postgresql'   // Plugin Flyway >=10 exige para Postgres
+
+    // ---- Documentação OpenAPI ----
+    // Este é o que gera o /v3/api-docs e a UI Swagger em /swagger-ui.html.
+    // Crítico para o monorepo: é a partir desse endpoint que o target Nx
+    // `export-openapi` vai exportar o JSON para libs/openapi-specs/
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+
+    // ---- Lombok ----
+    // Reduz verbosidade (getters, setters, builders, constructors).
+    compileOnly        "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // ---- MapStruct ----
+    // Gera código de conversão entre DTOs e entidades em tempo de compilação.
+    // Atenção: a ordem dos annotation processors abaixo é CRÍTICA.
+    // Lombok precisa vir ANTES do lombok-mapstruct-binding, e o binding
+    // precisa vir ANTES do mapstruct-processor. Trocar a ordem compila
+    // sem erro, mas gera mappers com métodos vazios — os campos viram null
+    // em runtime e você só descobre o bug quando o endpoint retorna JSON
+    // cheio de "null". Eu já avisei, agora você tem como justificativa.
+    implementation     "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBinding}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    // ---- Testes ----
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"
+    testImplementation "org.testcontainers:postgresql:${testcontainersVersion}"
+    testRuntimeOnly    'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+
+}
+
+// --------------------------------------------------------------------
+// TARGET CUSTOMIZADO: export-openapi
+// --------------------------------------------------------------------
+// Sobe a aplicação em modo "docs only", chama /v3/api-docs, grava o JSON
+// em libs/openapi-specs/backend.json. Esse JSON vira a fonte de verdade
+// que a lib api-client-ts vai consumir para gerar o cliente TypeScript.
+// Rodamos isso no CI antes do build do frontend.
+// --------------------------------------------------------------------
+tasks.register('exportOpenApi', Exec) {
+    dependsOn 'bootJar'
+    workingDir = rootDir
+    // O comando real virá via @springdoc/openapi-maven-plugin ou via script;
+    // por ora, deixe como placeholder — vamos implementar na seção de scripts.
+    commandLine 'echo', 'Use o target Nx `export-openapi` — ver project.json'
 }
 
 tasks.named('test') {

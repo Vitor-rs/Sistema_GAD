@@ -1,0 +1,5 @@
+-- apps/backend/src/main/resources/db/migration/V1__baseline.sql
+--
+-- Baseline do schema do GAD. Intencionalmente vazio no Sprint 2.
+-- No Sprint 3 adicionaremos as entidades Aluno, Certificado e Classificacao
+-- em migrations numeradas V2__, V3__, etc. O Flyway aplica em ordem.
